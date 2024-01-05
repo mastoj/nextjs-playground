@@ -37,7 +37,8 @@ const DataCacheExample = async ({ params }: Props) => {
   };
   return (
     <div>
-      DataCacheExample: {JSON.stringify(timeData, null, 2)}
+      DataCacheExample, this is a new deploy. Old utc time
+      2024-01-05T10:09:11.386182+00:00 {JSON.stringify(timeData, null, 2)}
       <form action={clearCache}>
         <button type="submit">Clear Cache</button>
       </form>
