@@ -1,3 +1,4 @@
+import { revalidatePath, revalidateTag } from 'next/cache';
 import React from 'react';
 
 type Props = {
@@ -12,6 +13,7 @@ const getData = async (timezoneString: string) => {
     {
       next: {
         revalidate: 3600,
+        tags: ['timezone'],
       },
     },
   );
@@ -20,12 +22,27 @@ const getData = async (timezoneString: string) => {
   return data;
 };
 
+export const dynamic = 'force-dynamic';
+
 const DataCacheExample = async ({ params }: Props) => {
   const timezoneString = params.timezone.join('/');
 
   console.log('==> timezoneString: ', timezoneString);
   const timeData = await getData(timezoneString);
-  return <div>DataCacheExample: {JSON.stringify(timeData, null, 2)}</div>;
+
+  const clearCache = async () => {
+    'use server';
+    revalidateTag('timezone');
+    revalidatePath('/caching/time' + timezoneString);
+  };
+  return (
+    <div>
+      DataCacheExample: {JSON.stringify(timeData, null, 2)}
+      <form action={clearCache}>
+        <button type="submit">Clear Cache</button>
+      </form>
+    </div>
+  );
 };
 
 export default DataCacheExample;
