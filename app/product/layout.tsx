@@ -8,7 +8,7 @@ const ProductLayout = ({
     <div>
       ProductLayout
       {children}
-      <Suspense>{subscription}</Suspense>
+      {subscription}
     </div>
   );
 };

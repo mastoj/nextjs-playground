@@ -11,7 +11,9 @@ const SubscriptionPage = ({ searchParams, params }: Props) => {
       <div>SubscriptionPage params: {JSON.stringify(params)}</div>
       <div>
         SubscriptionPage searchParams: {JSON.stringify(searchParams)}
-        {searchParams.hello && <div>hello: {searchParams.hello}</div>}
+        {searchParams.hello && (
+          <dialog open>hello: {searchParams.hello}</dialog>
+        )}
       </div>
     </>
   );

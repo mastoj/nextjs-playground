@@ -9,7 +9,7 @@ const ProductPage = (props: Props) => {
   return (
     <div>
       ProductPage: {JSON.stringify(props.params)}
-      <Link href="/product/this/is/a/slug?hello=tomas">This is a link</Link>
+      <Link href="/product/this/is/a/slug?hello=afsdfs">This is a link</Link>
     </div>
   );
 };
